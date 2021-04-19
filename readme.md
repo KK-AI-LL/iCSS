@@ -46,6 +46,11 @@ CSS 奇技淫巧，在这里，都有。
 
 ![image](https://user-images.githubusercontent.com/8554143/87442550-03eb5500-c627-11ea-80f5-ada17a79a6d0.png)
 
+---
+#### Extra_thinking  — [关于box-sizing不同盒子中内容位置的思考](http://htmlpreview.github.io/?https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/关于box-sizing不同盒子中内容位置的思考.html)
+[源文件](https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/关于box-sizing不同盒子中内容位置的思考.html)
+
+---
 
 #### 7、[全兼容的最后一条边界线问题](http://htmlpreview.github.io/?https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/7.消失的边界线问题.html)
 [源文件](https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/7.消失的边界线问题.html)
