@@ -18,8 +18,8 @@ CSS 奇技淫巧，在这里，都有。
 **tips:** chrome使用ctrl+点击可以在新标签页打开网页
 
 ## 文章列表
-#### 1、[下面这个左边竖条图形，只使用一个标签，可以有多少种实现方式：](http://htmlpreview.github.io/?https://github.com/KK-AI-LL/iCSS/blob/mastercss_learn/1.左边框的多种实现方式.html)
-[源文件](https://github.com/KK-AI-LL/iCSS/blob/mastercss_learn/1.左边框的多种实现方式.html)
+#### 1、[下面这个左边竖条图形，只使用一个标签，可以有多少种实现方式：](http://htmlpreview.github.io/?https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/1.左边框的多种实现方式.html)
+[源文件](https://github.com/KK-AI-LL/iCSS/blob/master/css_learn/1.左边框的多种实现方式.html)
 
 ![image](https://user-images.githubusercontent.com/8554143/87442343-c686c780-c626-11ea-871a-d95f3176f6a4.png)
 
