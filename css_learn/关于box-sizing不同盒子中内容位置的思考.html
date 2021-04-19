@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        body>div>div{
+            margin-top: 30px;
+        }
+
+        .box{
+            position: relative;
+            width: 200px;
+            height: 100px;
+            color: white;
+            border: 10px solid #63d33a;
+            background: #333333;
+        }
+
+        .border{
+            box-sizing: border-box;
+        }
+
+        .absolute_text{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 30px;
+            background: red;
+        }
+
+        .relative_text{
+            position: relative;
+            width: 100px;
+            height: 30px;
+            background: red;
+        }
+
+        .content{
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>如下，MDN文档中提到，当使用绝对、相对位置时，
+            content-box允许内容和content对其，使其不受border
+            和padding的影响，因此我想对此进行实验。
+        </div>
+        <img src="box-sizing.png" style="width: 600px">
+        <div>position:relative</div>
+        <div class="box border">
+            <div class="relative_text">border box no padding</div>
+        </div>
+        <div class="box content">
+            <div class="relative_text">content box no padding</div>
+        </div>
+        <div class="box border" style="padding: 30px;">
+            <div class="relative_text">border box padding 30px</div>
+        </div>
+        <div class="box content" style="padding: 30px;">
+            <div class="relative_text">content box padding 30px</div>
+        </div>
+        <div class="box border" style="padding: 30px;border: 20px solid #63d33a">
+            <div class="relative_text">border box padding 30px</div>
+        </div>
+        <div class="box content" style="padding: 30px;border: 20px solid #63d33a">
+            <div class="relative_text">content box padding 30px</div>
+        </div>
+        <div>可以看到，在内部position:relative的情况下，
+            无论是border-box，content-box，内容都和content盒子对齐，
+            在盒子内部的位置会受到padding和border影响,所以我认为MDN
+            文档想表达的是，content-box的content部分不会因为border或
+            padding被压缩，因此无论border、padding如何变化，都可以保证
+            内容的正常显示，在实例中可以看到，倒数第二个样例，当我们变化
+            border和padding时，内部content已经被压缩到无法正常显示。
+        </div>
+        <div>接下来看看绝对位置，position:absolute;top:0;left:0</div>
+        <div class="box border">
+            <div class="absolute_text">border box no padding</div>
+        </div>
+        <div class="box content">
+            <div class="absolute_text">content box no padding</div>
+        </div>
+        <div class="box border" style="padding: 30px;">
+            <div class="absolute_text">border box padding 30px</div>
+        </div>
+        <div class="box content" style="padding: 30px;">
+            <div class="absolute_text">content box padding 30px</div>
+        </div>
+        <div class="box border" style="padding: 30px;border: 20px solid #63d33a">
+            <div class="absolute_text">border box padding 30px</div>
+        </div>
+        <div class="box content" style="padding: 30px;border: 20px solid #63d33a">
+            <div class="absolute_text">content box padding 30px</div>
+        </div>
+        <div>可以看到，当采用绝对位置，content-box和border-box
+            内部都会和border内边框对齐，不会考虑padding，因此个人认为
+            在内部使用absolute布局时，不建议使用padding，因为没有意义。
+            对于content-box可以直接通过更改盒子大小，对于border-box设置
+            padding也没有作用，因此不设置padding可以增加可读性。
+        </div>
+    </div>
+</body>
+</html>

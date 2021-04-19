@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        span{
+            display:block;
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        .container{
+            position:relative;
+            background:#ddd;
+            margin-top: 30px;
+        }
+        .container > div{
+            width:200px;
+            height:200px;
+        }
+        .float{
+            float:left;
+            background-color:deeppink;
+            line-height: 100px;
+        }
+        .inline-block{
+            display:inline-block;
+            background-color:yellowgreen;
+            margin-left:-100px;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>拥有共同父容器的两个 DIV 重叠在一起，是 display:inline-block 叠在上面，还是 float:left 叠在上面？</span>
+        <span>float先声明</span>
+        <div class="container">
+            <div class="float"> #divB float:left</div>
+            <div class="inline-block">#divA display:inline-block</div>
+        </div>
+        <span>inline-block先声明</span>
+        <div class="container">
+            <div class="inline-block">#divA display:inline-block</div>
+            <div class="float"> #divB float:left</div>
+        </div>
+        <span>可以看到inline-block始终位于上方，为什么呢？</span>
+        <span>这里涉及到7阶层叠（stacking level）</span>
+        <img src="3.png" style="margin-top: -40px;margin-bottom: 20px"/>
+        <span>详见<a href="https://github.com/chokcoco/iCSS/issues/48">https://github.com/chokcoco/iCSS/issues/48</a></span>
+    </div>
+</body>
+</html>

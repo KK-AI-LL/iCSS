@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        body>div>div{
+            margin-top: 30px;
+        }
+
+        span{
+            color: #63d33a;
+        }
+
+        .multi_style{
+            width: 200px;
+            text-align: center;
+            border: 2px solid #dddddd;
+        }
+        .multi_style>p{
+            display: inline-block;
+            text-align: left;
+        }
+
+        em{
+            display: -webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>实现：单行居中显示文字，多行居左显示，最多两行超过用省略号结尾</h2>
+        <div>方法1 利用inline-block在父元素中的位置会被父元素text-align影响的特性</div>
+        <span style="display:block;margin-top: 20px">父元素text-align=center，子元素p的text-align=left,display=inline-block</span>
+        <span>则当文本不超过父元素宽度时,即单行时,p的宽度被文本撑起但小于总宽度，因此会被居中</span><br/>
+        <span>当文本超过父元素宽度,即多行时,p的宽度同父元素,父元素text-align属性不会产生影响,而p内部则为居左,达到效果</span>
+        <div class="multi_style"><p>单行居中</p></div>
+        <div class="multi_style"><p>两行居左两行居左两行居左两行居左</p></div>
+        <div class="multi_style"><p>多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略</p></div>
+
+        <div>接下来实现多行省略，webkit内核实现了制定行数的方法配合text-overflow,overflow使用可以达到要求</div>
+        <span style="display:block;margin-top: 20px">问题在于,制定行数的方法要求display属性为-webkit-box,与之前设置的inline-block冲突</span>
+        <span>因此还需要再嵌套一个标签，这里选用em，即结构为： </span><br/>
+        <span> text-align:center,display:block ---> text-align:left,display:inline-block ---> display:-webkit-box</span>
+
+        <div>效果如下</div>
+        <div class="multi_style"><p><em>单行居中</em></p></div>
+        <div class="multi_style"><p><em>两行居左两行居左两行居左两行居左</em></p></div>
+        <div class="multi_style"><p><em>多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略</em></p></div>
+
+        <div>方法2</div>
+        <span>如果不希望使用多层嵌套，最后一层em可以略去，添加一个行高限制为单行，超出省略的p标签，
+            绝对定位与前一个p标签第一行重合并将其覆盖，居中显示，这样display就不会被-webkit-box覆盖</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        body>div>*{
+            margin-top: 30px;
+        }
+
+        .general{
+            position: relative;
+            width: 166px;
+            height: 172px;
+            background-image: url("4_1.png");
+            background-size: 166px,172px,cover;
+        }
+
+        .reflect{
+            -webkit-box-reflect: below 10px linear-gradient(transparent,rgba(255,255,255,0.8));
+        }
+
+        .inherit::after{
+            content: "";
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            bottom: -105%;
+            background-image: inherit;
+            transform: rotateX(180deg);
+        }
+
+        .inherit::before{
+            content: "";
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            bottom: -105%;
+            background: linear-gradient(transparent,rgba(255, 255, 255, 1));
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>实现如下倒影效果</div>
+        <img src="4.png" />
+        <div>方法1 -webkit-box-reflect (截至2021/4/13 只有webkit内核可用)</div>
+        <div class="general reflect"></div>
+        <div>可以看到，使用reflect生成的图像不会生成额外的盒子，在布局上会造成一定的麻烦</div>
+        <div style="margin-top:160px">方法2 伪元素+继承+伪元素蒙版 inherit 兼容性好,但是该方法同样有以上问题</div>
+        <div class="general inherit"></div>
+    </div>
+</body>
+</html>

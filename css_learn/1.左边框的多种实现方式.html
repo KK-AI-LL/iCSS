@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左边框的多种实现方式</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+        /*定义基础背景框*/
+        .general{
+            position:relative;
+            width: 100px;
+            height: 50px;
+            background-color: #DDDDDD;
+            margin-bottom: 20px;
+        }
+
+        /* 方法1 border*/
+        .border{
+            border-left: 2px deeppink solid
+        }
+        /* 方法2 box-shadow_inset*/
+        .box-shadow_inset{
+            box-shadow: inset 2px 0 0 0 deeppink;
+        }
+        /* 方法3 box-shadow*/
+        .box-shadow{
+            box-shadow: -2px 0 0 0 deeppink
+        }
+        /* 方法4 伪元素*/
+        .pseudo::before{
+            content: "";
+            width: 2px;
+            height: 50px;
+            background-color: deeppink;
+            /* 伪元素的默认显示是 inline，如果content为空则不会撑开*/
+            display: block;
+            /*  使用position也可以强行让其显示  */
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*left: 0;*/
+        }
+        /* 方法5 过滤器*/
+        .filter{
+            /* 无 inset 和 spread */
+            filter: drop-shadow(-2px 0 0 deeppink);
+            /*  MDN  This function is similar to the more established box-shadow property; the difference is that with filters, some browsers provide hardware acceleration for better performance.  */
+        }
+        /* 方法6 渐变*/
+        .linear-gradient{
+            /* deeppink 0px可以省略*/
+            /*background-image: linear-gradient(90deg, deeppink 0px, deeppink 2px, transparent 2px);*/
+            /*background-image: linear-gradient(.25turn, deeppink 0px, deeppink 2px, transparent 2px);*/
+            background-image: linear-gradient(to right, deeppink 2px ,transparent 2px);
+        }
+        /* 方法7 轮廓*/
+        .outline{
+            outline: 2px solid deeppink;
+        }
+
+        .outline::after{
+            position: absolute;
+            content: "";
+            top: -2px;
+            bottom: -2px;
+            left: 0;
+            right: -2px;
+            background-color: #DDDDDD;
+        }
+        /* 方法8 滚动条*/
+        .scroll{
+            overflow-y: scroll;
+            background-color: deeppink;
+            width: 102px;
+        }
+
+        .scroll::-webkit-scrollbar{
+            width: 100px;
+            background-color: #DDDDDD;
+        }
+        /* 方法9 下划线旋转*/
+        .underline{
+            overflow: hidden;
+        }
+
+        .underline::before{
+            position: absolute;
+            bottom: 0;
+            right: 42px;
+            content: "___";
+            font-size: 50px;
+            color: deeppink;
+            transform: rotate(90deg);
+            /*用下划线可以加粗一点*/
+            /*text-decoration: underline;*/
+        }
+        /* 方法10 首字母选择器(伪元素)*/
+        .first-letter{
+            position: relative;
+            overflow: hidden;
+        }
+        .first-letter::first-letter{
+            background-color: deeppink;
+            color: transparent;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 30px 0;
+            margin-left: -6px;
+        }
+        /* 方法11 font-size + 列表图标*/
+        .list-style{
+            background-color: deeppink;
+            display: list-item;
+            list-style: square inside;
+            font-size: 500px;
+            padding-left: 2px;
+            color: #DDDDDD;
+            line-height: 50px;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h2>实现下面的图片</h2>
+        <img  src="1.png"/>
+        <div>方法1 border</div>
+        <div class="general border"></div>
+        <div>方法2 box-shadow inset</div>
+        <div class="general box-shadow_inset"></div>
+        <div>方法3 box-shadow 可以看到shadow最左端为-2px，使用时需要注意</div>
+        <div class="general box-shadow"></div>
+        <div>方法4 伪元素</div>
+        <div class="general pseudo"></div>
+        <div>方法5 filter drop-shadow</div>
+        <div class="general filter"></div>
+        <div>方法6 渐变 linear-gradient</div>
+        <div class="general linear-gradient"></div>
+        <div>方法7 outline 先用outline描绘轮廓，之后用伪元素遮盖其他边，会导致元素整体变大</div>
+        <div class="general outline"></div>
+        <div>方法8 滚动条 ---很厉害</div>
+        <div class="general scroll"></div>
+        <div>方法9 下划线 很难控制线的宽度</div>
+        <div class="general underline"></div>
+        <div>方法10 ::first-letter</div>
+        <div class="general first-letter">1</div>
+        <div>方法11 list-style(type image position)</div>
+        <div class="general list-style"></div>
+    </div>
+</body>
+</html>

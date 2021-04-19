@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        body>div>div{
+            margin-top: 30px;
+        }
+
+        .back{
+            width:450px;
+            text-align-last: justify;
+            background: #dddddd;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .border-radius{
+            display: inline-block;
+            border-radius: 50%;
+            width: 21px;
+            line-height: 21px;
+            background:#333;
+            color:white;
+            text-align: center;
+        }
+
+        .border-radius-new{
+            display: inline-block;
+            border-radius: 50%;
+            width: 21px;
+            line-height: 21px;
+            background:#333;
+            color:white;
+            text-indent:6px;
+        }
+
+        .new_back{
+            width:450px;
+            background: #dddddd;
+            height: 30px;
+            line-height: 30px;
+            text-align: justify;
+        }
+
+
+        div.new_back:nth-of-type(6)::after{
+            content: "";
+            display: inline-block;
+            width: 100%;
+        /*    宽度设置为100%保证一定可以撑开第二层*/
+        }
+
+        div.new_back:nth-of-type(8)::after{
+            content: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
+            display: inline;
+            color: transparent;
+            /*    宽度设置为100%保证一定可以撑开第二层*/
+        }
+
+        .flex{
+            display: flex;
+            width: 450px;
+            height: 30px;
+            background: #dddddd;
+            line-height: 30px;
+        }
+
+        .flex:nth-child(1){
+            float: left;
+        }
+
+        .flex_box{
+            display: inline-block;
+            flex-grow: 1;
+            flex-basis: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>实现下列多列均匀布局</div>
+        <img src="6.png" style="width: 500px"/>
+        <h2>方法1 在外层使用text-align-last</h2>
+        <div class="back">
+            <div class="border-radius">1</div>
+            <div class="border-radius">2</div>
+            <div class="border-radius">3</div>
+            <div class="border-radius">4</div>
+            <div class="border-radius">5</div>
+        </div>
+
+        <div>当在外层使用text-align-last会导致内部text-align属性无法生效，
+        需要使用text-indent属性强行缩进</div>
+        <div class="back">
+            <div class="border-radius-new">1</div>
+            <div class="border-radius-new">2</div>
+            <div class="border-radius-new">3</div>
+            <div class="border-radius-new">4</div>
+            <div class="border-radius-new">5</div>
+        </div>
+        <div>为什么不直接使用text-align:justify?<br/>原因在于:justify属性
+            只有在存在第二行的时候才会生效，而这里我们只有一行，
+            因此使用text-align-last强行设置最后一行可以达成目标，
+            但是text-align-last兼容性较差，而text-align几乎可以兼容所有浏览器
+            同时
+            <span style="color:red">结合text-align两行即以上 生效的特性，我们可以选择给元素添加第二
+            行的方式达成目标</span>
+        </div>
+        <h2>方法2 添加第二行</h2>
+        <div class="new_back">
+            <div class="border-radius-new">1</div>
+            <div class="border-radius-new">2</div>
+            <div class="border-radius-new">3</div>
+            <div class="border-radius-new">4</div>
+            <div class="border-radius-new">5</div>
+        </div>
+        <div>上例使用after伪元素，其display必须使用inline-block，
+            否则没有第二行的概念，也可以使用inline然后用内容去撑开，
+            这样就需要将内容隐藏，比较麻烦，也可以达到效果，如下
+        </div>
+
+        <div class="new_back">
+            <div class="border-radius-new">1</div>
+            <div class="border-radius-new">2</div>
+            <div class="border-radius-new">3</div>
+            <div class="border-radius-new">4</div>
+            <div class="border-radius-new">5</div>
+        </div>
+
+        <div>使用inline和文字还有一个坏处在于，文字长度无法改变
+            ，如果显示框太长，之前设置的文字可能无法撑开导致换行。</div>
+
+        <h2>方法3 最简单的flex布局</h2>
+        <div class="flex">
+            <div class="flex_box">
+                <div class="border-radius-new">1</div>
+            </div>
+            <div class="flex_box">
+                <div class="border-radius-new">2</div>
+            </div>
+            <div class="flex_box">
+                <div class="border-radius-new">3</div>
+            </div>
+            <div class="flex_box">
+                <div class="border-radius-new">4</div>
+            </div>
+            <div>
+                <div class="border-radius-new">5</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-family: 华文楷体;
+            font-size: 18px;
+        }
+
+        .general{
+            position:relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+        }
+
+        /* 方法1 */
+        .border{
+            background: #9c27b0;
+            border: 20px dashed  #2196f3;
+        }
+
+        .border::after{
+            content: "";
+            background: white;
+            display: block;
+            width: 180px;
+            height: 180px;
+        }
+        /* 方法2 */
+        .border2{
+            background: #ffffff;
+            background-clip: padding-box;
+            border: 20px dashed #2196f3;
+        }
+
+        .border2::after{
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: #9c27b0;
+            z-index: -1;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h2>实现下面的图片</h2>
+        <img  src="2.png"/>
+        <div>方法1 border(dash)+伪元素 ===> dash样式有变化，因此无法复现</div>
+        <div class="general border"></div>
+        <div>方法2 思想同上，改变背景起始点为background-clip</div>
+        <div class="general border2"></div>
+    </div>
+</body>
+</html>
